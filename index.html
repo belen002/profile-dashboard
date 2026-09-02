@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aurelia · Company Directory</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+<div class="page">
+
+  <!-- Top bar -->
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-logo">A</div>
+      <div class="brand-text">
+        <div class="brand-name">Aurelia</div>
+        <div class="brand-sub">Company Directory</div>
+      </div>
+    </div>
+    <div class="topbar-status">
+      <span class="status-dot"></span>
+      <span>Live · <span id="today-date"></span></span>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <span class="eyebrow">Employee Gallery</span>
+    <h1>Meet the people behind the work.</h1>
+    <p class="hero-sub">Glide through profiles, edit details in place, and manage tasks — all in one elegant surface.</p>
+  </section>
+
+  <main class="content">
+
+    <!-- Profile card -->
+    <section class="profile-card" id="profile-card" aria-live="polite">
+      <div class="profile-left">
+        <div class="avatar" id="avatar">--</div>
+        <h2 class="profile-name" id="profile-name">Loading…</h2>
+        <div class="profile-role" id="profile-role">Team Member</div>
+        <div class="profile-tags">
+          <span class="tag tag-gold" id="tag-company">—</span>
+          <span class="tag tag-blue" id="tag-city">—</span>
+        </div>
+        <button class="btn-edit" id="edit-btn" type="button">Edit Profile</button>
+      </div>
+
+      <div class="profile-right">
+
+        <div class="field-section">
+          <h3 class="section-label"><span class="label-rule"></span>Contact</h3>
+          <div class="field-grid">
+            <div class="field">
+              <span class="field-label">Username</span>
+              <span class="field-value" data-field="username" data-editable="true"></span>
+            </div>
+            <div class="field">
+              <span class="field-label">Email</span>
+              <span class="field-value" data-field="email" data-editable="true"></span>
+            </div>
+            <div class="field">
+              <span class="field-label">Phone</span>
+              <span class="field-value" data-field="phone" data-editable="true"></span>
+            </div>
+            <div class="field">
+              <span class="field-label">Website</span>
+              <span class="field-value" data-field="website" data-editable="true"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="field-section">
+          <h3 class="section-label"><span class="label-rule"></span>Address</h3>
+          <div class="field-grid">
+            <div class="field">
+              <span class="field-label">Street</span>
+              <span class="field-value" data-field="street" data-editable="true"></span>
+            </div>
+            <div class="field">
+              <span class="field-label">City</span>
+              <span class="field-value" data-field="city" data-editable="true"></span>
+            </div>
+            <div class="field">
+              <span class="field-label">Zip</span>
+              <span class="field-value" data-field="zip" data-editable="true"></span>
+            </div>
+            <div class="field">
+              <span class="field-label">Company</span>
+              <span class="field-value" data-field="company" data-editable="true"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="field-section catchphrase-section">
+          <h3 class="section-label"><span class="label-rule"></span>Catchphrase</h3>
+          <p class="catchphrase" id="catchphrase" data-field="catchphrase" data-editable="true"></p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Carousel controls -->
+    <div class="carousel-controls">
+      <button class="arrow-btn" id="prev-btn" type="button" aria-label="Previous profile">&#8249;</button>
+      <div class="dots" id="dots-container"></div>
+      <button class="arrow-btn" id="next-btn" type="button" aria-label="Next profile">&#8250;</button>
+    </div>
+    <div class="page-counter" id="page-counter">01 / 10</div>
+
+    <!-- Tasks card -->
+    <section class="tasks-card">
+      <div class="tasks-header">
+        <div class="tasks-title-group">
+          <div class="tasks-icon">&#10003;</div>
+          <div>
+            <h3 class="tasks-title" id="tasks-title">Tasks</h3>
+            <div class="tasks-sub">Personal Board</div>
+          </div>
+        </div>
+
+        <div class="tasks-stats">
+          <span class="stat stat-completed"><strong id="stat-completed">0</strong> Completed</span>
+          <span class="stat stat-open"><strong id="stat-open">0</strong> Open</span>
+          <span class="stat stat-total"><strong id="stat-total">0</strong> Total</span>
+        </div>
+
+        <form class="tasks-add" id="add-task-form">
+          <input type="text" id="new-task-input" placeholder="Add a new task…" autocomplete="off">
+          <button type="submit" id="add-task-btn">Add</button>
+        </form>
+      </div>
+
+      <div class="tasks-table-wrap">
+        <table class="tasks-table">
+          <thead>
+            <tr>
+              <th class="col-check"></th>
+              <th>Task</th>
+              <th>Priority</th>
+              <th>Due</th>
+              <th class="col-remove"></th>
+            </tr>
+          </thead>
+          <tbody id="tasks-body">
+            <tr><td colspan="5" class="tasks-loading">Loading tasks…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">Aurelia · Crafted with White, Gold &amp; Ocean</footer>
+
+</div>
+
+<script src="./js/script.js"></script>
+</body>
+</html>
